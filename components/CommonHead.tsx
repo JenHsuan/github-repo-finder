@@ -23,12 +23,6 @@ const CommonHead: React.FC<CommandHeadProp> = ({title, url, description, keyword
             <meta name="author" content="Jen-Hsuan Hsieh (Sean Hsieh)"/>
             <link rel="dns-fetch" href="https://raw.githubusercontent.com/"/>
             <link rel="canonical" href={url}/>
-            <link rel="manifest" href="/_next/static/manifest.webmanifest" />
-            <meta name = "apple-mobile-web-app-capable" content="yes" />
-            <meta name = "apple-mobile-web-app-status-bar-style" content="black" />
-            <meta name = "apple-mobile-web-app-title" content={title} />
-            <link rel="apple-touch-icon" href="/_next/static/logo-icon-144x144.png" />
-            <link rel="apple-touch-startup-icon" href="/_next/static/logo-icon-144x144.png" />
         </Head>
     )
 }
