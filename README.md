@@ -12,9 +12,6 @@ The stack of this template contains the following items.
 * Styled-Components
 * creat-nrs-web
 
-
-
-
 ### Usages
 
 * Installation
