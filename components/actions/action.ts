@@ -4,7 +4,8 @@ import { ThunkAction } from 'redux-thunk'
 import {
     GET_USERS,
     GET_DATA,
-    GET_REPOS
+    GET_REPOS,
+    SET_FILTERTEXT
 } from '../types';
 
 //States
@@ -34,12 +35,30 @@ export interface GetReposAction {
     }
 }
 
+export interface SetFilterTextAction {
+    type: typeof SET_FILTERTEXT,
+    payload: {
+        filterText: string
+    }
+}
+
 //The example for a synchronous action
 export const getData = (): ThunkAction<void, InitialState, unknown, GetDataAction> => dispatch => {
     try {
         dispatch({
             type: GET_DATA,
             payload: {data: 'Test component'}
+        });
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const setFilterText = (text: string): ThunkAction<void, InitialState, unknown, SetFilterTextAction> => dispatch => {
+    try {
+        dispatch({
+            type: SET_FILTERTEXT,
+            payload: {filterText: text}
         });
     } catch (error) {
         console.log(error);

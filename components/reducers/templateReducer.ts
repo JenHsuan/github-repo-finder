@@ -2,7 +2,8 @@
 import {
     GET_USERS,
     GET_DATA,
-    GET_REPOS
+    GET_REPOS,
+    SET_FILTERTEXT
 } from '../types';
 
 //States
@@ -19,12 +20,13 @@ interface TemplateReducer {
 import {
     GetDataAction,
     GetUsersAction,
-    GetReposAction
+    GetReposAction,
+    SetFilterTextAction
 } from '../actions/action';
 
 export const templateReducer = (
     state: InitialState = initialState,
-    action: GetDataAction | GetUsersAction | GetReposAction
+    action: GetDataAction | GetUsersAction | GetReposAction | SetFilterTextAction
 ) => {
     switch(action.type) {
         case GET_USERS:
@@ -41,6 +43,11 @@ export const templateReducer = (
              return {
                 ...state,
                 repos: action.payload.repos
+            };
+        case SET_FILTERTEXT:
+             return {
+                ...state,
+                filterText: action.payload.filterText
             };
         default:
             return state;
