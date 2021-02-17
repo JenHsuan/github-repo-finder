@@ -7,12 +7,14 @@ import {
 
 import {
     getUsers,
-    getData
+    getData,
+    getRepos
 } from "./actions/action";
 
 import {
     selectUsers,
-    selectData
+    selectData,
+    selectRepos
 } from "./states/states";
 
 import {
@@ -28,6 +30,7 @@ const ReduxTester: React.FC<ReduxTesterType> = () => {
     const data = useSelector(selectData);
     useEffect(() => {
         dispatch(getData());
+        dispatch(getRepos("ABC"));
     },[]);
 
     return (
