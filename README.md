@@ -4,12 +4,14 @@
 It's a project for searching repositories with keywords. There is only one page with a single searching function. Feel free to visit the demo site: https://next-github-repo-finder.netlify.app
 
 The stack of this template contains the following items.
-* Next.js
-* Redux
-* Styled-Components
 * React(Hooks)
+* Redux (Redux-thunk)
+* Support RWD (flexbox + Booystrap)
+* Support SSR & SEO (Next.js)
+* 100% TypeScript
+* Styled-Components
 * creat-nrs-web
-* flexbox
+
 
 
 
