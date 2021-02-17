@@ -1,11 +1,14 @@
-## Next.js + Redux + Styled-Components template
+## Github repo finder
 
 ### Introduction
-It's a template based on create-next-app that contains default folders and files for building a new project.
+It's a project for searching repositories with keywprds
+
 The stack of this template contains the following items.
 * Next.js
 * Redux
 * Styled-Components
+* React(Hooks)
+* creat-nrs-web
 
 ### Usages
 
@@ -17,3 +20,10 @@ npm install
 
 ```
 
+* Run
+
+```
+
+npm start
+
+```
