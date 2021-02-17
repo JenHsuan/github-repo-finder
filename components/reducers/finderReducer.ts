@@ -1,7 +1,5 @@
 //Types
 import {
-    GET_USERS,
-    GET_DATA,
     GET_REPOS,
     SET_FILTERTEXT
 } from '../types';
@@ -12,33 +10,16 @@ import {
     InitialState
 } from '../states/states';
 
-//Reducer
-interface TemplateReducer {
-
-}
-
 import {
-    GetDataAction,
-    GetUsersAction,
     GetReposAction,
     SetFilterTextAction
 } from '../actions/action';
 
-export const templateReducer = (
+export const finderReducer = (
     state: InitialState = initialState,
-    action: GetDataAction | GetUsersAction | GetReposAction | SetFilterTextAction
+    action: GetReposAction | SetFilterTextAction
 ) => {
     switch(action.type) {
-        case GET_USERS:
-             return {
-                ...state,
-                users: action.payload.users
-            };
-        case GET_DATA:
-             return {
-                ...state,
-                data: action.payload.data
-            };
         case GET_REPOS:
              return {
                 ...state,

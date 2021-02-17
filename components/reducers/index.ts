@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import {templateReducer} from './templateReducer';
+import { finderReducer } from './finderReducer';
 
 const rootReducer = combineReducers({
-    templateReducer: templateReducer
+    finderReducer: finderReducer
 });
 
 export default rootReducer;
