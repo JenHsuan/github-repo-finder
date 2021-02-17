@@ -32,7 +32,10 @@ const Dashboard: React.FC<{}> = () => {
                     <Repo name = {repo.full_name}
                         url = {repo.html_url}
                         description = {repo.description}
-                        avatar_url = {repo.owner.avatar_url}/>
+                        avatar_url = {repo.owner.avatar_url}
+                        watchers = {repo.watchers}
+                        forks = {repo.forks}
+                        score = {repo.score}/>
                     );
                 })}
                 {filterText !== '' && repos && repos.length === 0 && (

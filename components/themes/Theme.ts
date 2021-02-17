@@ -48,6 +48,11 @@ declare module "styled-components" {
             padding: string,
             color: string,
             fontSize: string
+        },
+        basic: {
+            paddingLeft: string,
+            color: string,
+            fontSize: string
         }
       },
       searchBar: {
@@ -80,7 +85,7 @@ export const Theme: DefaultTheme = {
             font: '14px Arial',
             flexWrap: 'wrap',
             marginLeft: '10%',
-            marginTop: '5%'
+            marginTop: '150px'
         }
     },
     repo: {
@@ -112,6 +117,11 @@ export const Theme: DefaultTheme = {
         subtitle: {
             padding: '10%',
             fontSize: '18px',
+            color: 'gray'
+        },
+        basic: {
+            paddingLeft: '10%',
+            fontSize: '16px',
             color: 'gray'
         }
     },

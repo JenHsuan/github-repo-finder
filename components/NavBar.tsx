@@ -6,10 +6,7 @@ const NavBar: React.FC<{}> = () => {
         <>
             <Navbar bg="dark" expand="lg" variant="dark" fixed="top">
                 <Navbar.Brand href="/">Github Repo Finder</Navbar.Brand>
-                <Nav.Link href="">
-                        <a>Source code</a>
-                </Nav.Link>
-                <Nav.Link href="">
+                <Nav.Link href="https://jenhsuan.github.io/ALayman/profile.html">
                         <a>Author</a>
                 </Nav.Link>
             </Navbar>

@@ -9,6 +9,9 @@ import {
     SearchBarContainerStyle
 } from './styles/Style';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
+
 type SearchBarType = {
     placeholder: string
 }
@@ -31,6 +34,7 @@ const SearchBar: React.FC<SearchBarType> = ({placeholder = 'Input keywords'}) =>
 
     return (
         <SearchBarContainerStyle>
+            <FontAwesomeIcon icon={faSearch} />
             <input ref={text} type="text" placeholder={placeholder} onChange={onChange}/>
         </SearchBarContainerStyle>
     )

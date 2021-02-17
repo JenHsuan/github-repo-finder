@@ -64,14 +64,19 @@ export const RepoTextStyle = styled('div')<IProps>(
 );
 
 export const SearchBarContainerStyle = styled.div`
+margin-left: 10%;
+margin-top: 100px;
   input {
+    margin-left: 1%;
     width: 30%;
     margin-top: 5%;
-    margin-left: 10%;
     border: 1px solid black;
     border-radius: 5px;
     box-shadow: 0 5px 5px gray, 0 0 0 5px #ffffffeb;
     height: 40px;
+    @media screen and (max-width: 700px){
+      width: 70%;
+    }
   }
 `;
 
