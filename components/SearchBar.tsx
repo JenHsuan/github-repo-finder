@@ -5,7 +5,15 @@ import {
     selectFilterText
 } from './states/states';
 
-const SearchBar = ({placeholder = 'Input keywords'}:{placeholder: string}) => {
+import {
+    SearchBarContainerStyle
+} from './styles/Style';
+
+type SearchBarType = {
+    placeholder: string
+}
+
+const SearchBar: React.FC<SearchBarType> = ({placeholder = 'Input keywords'}) => {
     const text = createRef<HTMLInputElement>()
     const disPatch = useDispatch();
     const filterText = useSelector(selectFilterText)
@@ -14,6 +22,7 @@ const SearchBar = ({placeholder = 'Input keywords'}:{placeholder: string}) => {
     },[]);
 
     const onChange = e => {
+        console.log(e)
         if (text.current.value !== filterText) {
             disPatch(getRepos(e.target.value));
             disPatch(setFilterText(e.target.value));
@@ -21,9 +30,9 @@ const SearchBar = ({placeholder = 'Input keywords'}:{placeholder: string}) => {
     }
 
     return (
-        <div>
-            <input className="article-searchbar" ref={text} type="text" placeholder={placeholder} onChange={onChange}/>
-        </div>
+        <SearchBarContainerStyle>
+            <input ref={text} type="text" placeholder={placeholder} onChange={onChange}/>
+        </SearchBarContainerStyle>
     )
 }
 

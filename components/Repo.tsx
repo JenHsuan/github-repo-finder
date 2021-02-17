@@ -1,21 +1,26 @@
-import React, {useEffect, createRef} from 'react'
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-const Repo = (
-    {name, description, url, login, avatar_url} :
-    {name: string,
+import {
+    RepoStyle,
+    RepoImgStyle,
+    RepoTextStyle
+} from './styles/Style';
+
+type RepoType = {
+    name: string,
      description: string,
      url: string,
-     login: string,
-     avatar_url: string}) => {
+     avatar_url: string
+}
+
+const Repo: React.FC<RepoType> = ({name, description, url, avatar_url}) => {
     return (
-        <div>
-            <div>name: {name}</div>
-            <div>description: {description}</div>
-            <div>url: {url}</div>
-            <div>login: {login}</div>
-            <div>avatar_url: {avatar_url}</div>
-        </div>
+        <RepoStyle onClick = {() => window.open(url, '_blank')}>
+            <RepoImgStyle variant = 'basic' src={avatar_url} />
+            <RepoTextStyle variant = 'title'>{name}</RepoTextStyle>
+            <RepoTextStyle variant = 'subtitle'>{description}</RepoTextStyle>
+        </RepoStyle>
     )
 }
 

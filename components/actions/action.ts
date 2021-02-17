@@ -87,6 +87,7 @@ export const getRepos = (keyword: string): ThunkAction<void, InitialState, unkno
         let url = `https://api.github.com/search/repositories?page=1&q=${keyword}&sort=stars&order=desc`
         let res = await fetch(url)
         let data = await res.json()
+        console.log(data)
         dispatch({
             type: GET_REPOS,
             payload: {repos: data.items}
