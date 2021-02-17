@@ -17,9 +17,9 @@ type SearchBarType = {
 }
 
 const SearchBar: React.FC<SearchBarType> = ({placeholder = 'Input keywords'}) => {
-    const text = createRef<HTMLInputElement>()
+    const text = createRef<HTMLInputElement>();
     const disPatch = useDispatch();
-    const filterText = useSelector(selectFilterText)
+    const filterText = useSelector(selectFilterText);
     useEffect(() => {
         text.current.value = filterText;
     },[]);

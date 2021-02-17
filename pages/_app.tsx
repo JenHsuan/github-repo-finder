@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 import { Theme } from '../components/themes/Theme';
 import { AppProps } from 'next/app'
+import 'intersection-observer'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

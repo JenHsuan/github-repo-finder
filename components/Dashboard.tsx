@@ -1,12 +1,14 @@
-import React from 'react';
+import React, {useEffect, useRef } from 'react';
 
 import {
+    useDispatch,
     useSelector
 } from "react-redux";
 
 import {
     selectRepos,
-    selectFilterText
+    selectFilterText,
+    selectPageCnt
 } from "./states/states";
 
 import {
@@ -19,9 +21,42 @@ import Repo from '../components/Repo';
 import NavBar from '../components/NavBar';
 import { Spinner } from 'react-bootstrap';
 
+import {
+    appendRepos,
+    setPageCnt
+ } from './actions/action';
+
 const Dashboard: React.FC<{}> = () => {
     const repos = useSelector(selectRepos);
     const filterText = useSelector(selectFilterText);
+    const pageCnt = useSelector(selectPageCnt);
+
+    const articleRef = useRef();
+    const disPatch = useDispatch();
+    let cnt = useRef(2);
+    let observer;
+
+    useEffect(() => {
+        const callback = entries => {
+            for (let entry of entries) {
+                if (entry.isIntersecting) {
+                    // Put image to the state when the target moves in the viewpoint
+                    if (filterText !== '') {
+                        disPatch(appendRepos(filterText, cnt.current++))
+                    }
+                }
+            }
+        };
+
+        observer = new window.IntersectionObserver(callback);
+        //Monitor elements
+    }, [filterText]);
+
+
+    useEffect(() => {
+        observer.observe(articleRef.current)
+    },[filterText])
+
     return (
         <>
             <NavBar/>
@@ -38,6 +73,7 @@ const Dashboard: React.FC<{}> = () => {
                         score = {repo.score}/>
                     );
                 })}
+                <div ref = {articleRef}></div>
                 {filterText !== '' && repos && repos.length === 0 && (
                     <SpinnerContainerStyle>
                         <Spinner animation="border" role="status"/>

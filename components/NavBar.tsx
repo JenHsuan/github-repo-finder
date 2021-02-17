@@ -7,7 +7,7 @@ const NavBar: React.FC<{}> = () => {
             <Navbar bg="dark" expand="lg" variant="dark" fixed="top">
                 <Navbar.Brand href="/">Github Repo Finder</Navbar.Brand>
                 <Nav.Link href="https://jenhsuan.github.io/ALayman/profile.html">
-                        <a>Author</a>
+                    Author
                 </Nav.Link>
             </Navbar>
         </>
