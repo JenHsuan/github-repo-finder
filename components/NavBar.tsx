@@ -9,6 +9,12 @@ const NavBar: React.FC<{}> = () => {
                 <Nav.Link href="https://jenhsuan.github.io/ALayman/profile.html">
                     Author
                 </Nav.Link>
+                <Nav.Link href="https://github.com/JenHsuan/github-repo-finder">
+                    Github
+                </Nav.Link>
+                <Nav.Link href="https://daily-learning.herokuapp.com/">
+                    ALayman
+                </Nav.Link>
             </Navbar>
         </>
     )

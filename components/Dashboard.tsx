@@ -62,9 +62,10 @@ const Dashboard: React.FC<{}> = () => {
             <NavBar/>
             <SearchBar placeholder="Type something..."/>
             <ReposContainerStyle variant = 'basic'>
-                {repos && repos.map(repo => {
+                {repos && repos.map((repo, index) => {
                     return (
-                    <Repo name = {repo.full_name}
+                    <Repo key = {`repo-${index}`}
+                        name = {repo.full_name}
                         url = {repo.html_url}
                         description = {repo.description}
                         avatar_url = {repo.owner.avatar_url}

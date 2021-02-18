@@ -11,6 +11,7 @@ The stack of this template contains the following items.
 * 100% TypeScript
 * Styled-Components
 * creat-nrs-web
+* Nelify
 
 ### Usages
 
