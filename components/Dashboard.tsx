@@ -33,29 +33,28 @@ const Dashboard: React.FC<{}> = () => {
 
     const articleRef = useRef();
     const disPatch = useDispatch();
-    let cnt = useRef(2);
+    //let cnt = useRef(2);
     let observer;
-
+    let cnt = 2;
     useEffect(() => {
+        cnt = 2;
         const callback = entries => {
             for (let entry of entries) {
                 if (entry.isIntersecting) {
                     // Put image to the state when the target moves in the viewpoint
                     if (filterText !== '') {
-                        disPatch(appendRepos(filterText, cnt.current++))
+                        disPatch(appendRepos(filterText, cnt++))
+                        //observer.unobserve(articleRef.current);
                     }
                 }
             }
         };
 
         observer = new window.IntersectionObserver(callback);
+        observer.observe(articleRef.current)
         //Monitor elements
     }, [filterText]);
 
-
-    useEffect(() => {
-        observer.observe(articleRef.current)
-    },[filterText])
 
     return (
         <>
@@ -64,7 +63,7 @@ const Dashboard: React.FC<{}> = () => {
             <ReposContainerStyle variant = 'basic'>
                 {repos && repos.map((repo, index) => {
                     return (
-                    <Repo key = {`repo-${index}`}
+                      <Repo key = {`repo-${index}`}
                         name = {repo.full_name}
                         url = {repo.html_url}
                         description = {repo.description}
