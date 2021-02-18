@@ -6,7 +6,7 @@ It's a project for searching repositories with keywords. There is only one page 
 The stack of this template contains the following items.
 * React(Hooks)
 * Redux (Redux-thunk)
-* Support RWD (flexbox + Booystrap)
+* Support RWD (flexbox + Bootstrap)
 * Support SSR & SEO (Next.js)
 * 100% TypeScript
 * Styled-Components
