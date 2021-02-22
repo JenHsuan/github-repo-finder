@@ -1,4 +1,8 @@
-import React, {useEffect, useRef } from 'react';
+import React, {
+    useEffect,
+    useRef,
+    useCallback
+} from 'react';
 
 import {
     useDispatch,
@@ -8,7 +12,7 @@ import {
 import {
     selectRepos,
     selectFilterText,
-    selectPageCnt
+    selectShowSpinner
 } from "./states/states";
 
 import {
@@ -26,16 +30,27 @@ import {
     setPageCnt
  } from './actions/action';
 
+ import debounce from 'lodash.debounce';
+
 const Dashboard: React.FC<{}> = () => {
     const repos = useSelector(selectRepos);
     const filterText = useSelector(selectFilterText);
-    const pageCnt = useSelector(selectPageCnt);
+    const showSpinner = useSelector(selectShowSpinner);
 
     const articleRef = useRef();
     const disPatch = useDispatch();
     //let cnt = useRef(2);
     let observer;
     let cnt = 2;
+
+    const debouncedAppendRepos = useCallback(
+		debounce((filterText, cnt) => {
+            disPatch(appendRepos(filterText, cnt))
+            console.log('search')
+        }, 2500),
+		[filterText], // will be created only once initially
+    );
+
     useEffect(() => {
         cnt = 2;
         const callback = entries => {
@@ -43,14 +58,17 @@ const Dashboard: React.FC<{}> = () => {
                 if (entry.isIntersecting) {
                     // Put image to the state when the target moves in the viewpoint
                     if (filterText !== '') {
-                        disPatch(appendRepos(filterText, cnt++))
+                        debouncedAppendRepos(filterText, cnt++);
+                        //disPatch(appendRepos(filterText, cnt++))
                         //observer.unobserve(articleRef.current);
                     }
                 }
             }
         };
-
-        observer = new window.IntersectionObserver(callback);
+        if(!observer) {
+            observer = new window.IntersectionObserver(callback);
+        }
+        observer.unobserve(articleRef.current);
         observer.observe(articleRef.current)
         //Monitor elements
     }, [filterText]);
@@ -61,7 +79,11 @@ const Dashboard: React.FC<{}> = () => {
             <NavBar/>
             <SearchBar placeholder="Type something..."/>
             <ReposContainerStyle variant = 'basic'>
-                {repos && repos.map((repo, index) => {
+                {showSpinner && (
+                    <SpinnerContainerStyle>
+                        <Spinner animation="border" role="status"/>
+                    </SpinnerContainerStyle>)}
+                {!showSpinner && repos && repos.map((repo, index) => {
                     return (
                       <Repo key = {`repo-${index}`}
                         name = {repo.full_name}
@@ -74,10 +96,6 @@ const Dashboard: React.FC<{}> = () => {
                     );
                 })}
                 <div ref = {articleRef}></div>
-                {filterText !== '' && repos && repos.length === 0 && (
-                    <SpinnerContainerStyle>
-                        <Spinner animation="border" role="status"/>
-                    </SpinnerContainerStyle>)}
             </ReposContainerStyle>
         </>
     )

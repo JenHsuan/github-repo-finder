@@ -5,7 +5,8 @@ import {
     GET_REPOS,
     SET_FILTERTEXT,
     APPEND_REPOS,
-    SET_PAGECNT
+    SET_PAGECNT,
+    SHOW_SPINNER
 } from '../types';
 
 //States
@@ -14,7 +15,7 @@ import {
 } from '../states/states';
 
 export interface GetReposAction {
-    type: typeof GET_REPOS,
+    type: typeof GET_REPOS
     payload: {
         repos: any[]
     }
@@ -41,6 +42,13 @@ export interface SetPageCntAction {
     }
 }
 
+export interface ShowSpinnerAction {
+    type: typeof SHOW_SPINNER,
+    payload: {
+        showSpinner: boolean
+    }
+}
+
 export const setPageCnt = (pageCnt: number): ThunkAction<void, InitialState, unknown, SetPageCntAction> => dispatch => {
     try {
         dispatch({
@@ -63,14 +71,24 @@ export const setFilterText = (text: string): ThunkAction<void, InitialState, unk
     }
 };
 
-export const getRepos = (keyword: string): ThunkAction<void, InitialState, unknown, GetReposAction> => async dispatch => {
+export const getRepos = (keyword: string): ThunkAction<void, InitialState, unknown, GetReposAction | ShowSpinnerAction> => async dispatch => {
     try {
+        dispatch({
+            type: SHOW_SPINNER,
+            payload: {showSpinner: true}
+        });
+
         let url = `https://api.github.com/search/repositories?page=1&q=${keyword}&sort=stars&order=desc`
         let res = await fetch(url)
         let data = await res.json()
         dispatch({
             type: GET_REPOS,
             payload: {repos: data.items}
+        });
+
+        dispatch({
+            type: SHOW_SPINNER,
+            payload: {showSpinner: false}
         });
     } catch (error) {
         console.log(error);

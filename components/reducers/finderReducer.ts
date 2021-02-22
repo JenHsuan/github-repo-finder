@@ -3,7 +3,8 @@ import {
     GET_REPOS,
     SET_FILTERTEXT,
     APPEND_REPOS,
-    SET_PAGECNT
+    SET_PAGECNT,
+    SHOW_SPINNER
 } from '../types';
 
 //States
@@ -16,12 +17,13 @@ import {
     GetReposAction,
     SetFilterTextAction,
     AppendReposAction,
-    SetPageCntAction
+    SetPageCntAction,
+    ShowSpinnerAction
 } from '../actions/action';
 
 export const finderReducer = (
     state: InitialState = initialState,
-    action: GetReposAction | SetFilterTextAction | AppendReposAction | SetPageCntAction
+    action: GetReposAction | SetFilterTextAction | AppendReposAction | SetPageCntAction | ShowSpinnerAction
 ) => {
     switch(action.type) {
         case GET_REPOS:
@@ -43,6 +45,11 @@ export const finderReducer = (
              return {
                 ...state,
                 pageCnt: action.payload.pageCnt
+            };
+        case SHOW_SPINNER:
+             return {
+                ...state,
+                showSpinner: action.payload.showSpinner
             };
         default:
             return state;
